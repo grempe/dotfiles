@@ -108,8 +108,6 @@ DISABLE_UPDATE_PROMPT=true
 HISTSIZE=10000
 SAVEHIST=10000
 
-alias ll='ls -alh'
-alias ls='ls -GwF'
 alias pn=pnpm
 alias t="truestamp"
 # Truestamp CLI completions

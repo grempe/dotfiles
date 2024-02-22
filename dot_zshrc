@@ -1,0 +1,48 @@
+HISTSIZE=10000
+SAVEHIST=10000
+
+# fzf : fuzzy finder
+# see: https://github.com/junegunn/fzf?tab=readme-ov-file#demo
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide
+# see: https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+# ls replacement
+# see: https://eza.rocks (formerly exa: http://the.exa.website)
+alias ls="eza"
+alias ll="eza -alh"
+alias tree="eza --tree"
+
+# starship
+eval "$(starship init zsh)"
+
+# Check if running on GitHub Codespaces
+if [ "$CODESPACES" = "true" ]; then
+    # Codespaces-specific settings
+
+    # cat replacement
+    # see: https://github.com/sharkdp/bat
+    alias cat='batcat --paging=never'
+else
+    # macOS machine-specific settings
+    alias pn=pnpm
+    alias t="truestamp"
+    alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+    # cat replacement
+    # see: https://github.com/sharkdp/bat
+    alias cat='bat --paging=never'
+
+    # deno completions
+    # regen with 'deno completions zsh > ~/.zsh/_deno'
+    fpath=(~/.zsh $fpath)
+    autoload -Uz compinit
+    compinit -u
+
+    # fnm : nodejs version manager
+    eval "$(fnm env --use-on-cd)"
+fi
+

@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo apt update -y
+sudo apt install -y ripgrep
+sudo apt install -y bat
+sudo apt install -y eza
+sudo apt install -y fzf
+
+# zoxide
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
+# starship
+curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+
+brew install ripgrep
+brew install bat
+brew install eza
+brew install fzf
+brew install zoxide
+brew install starship
+{{ end -}}

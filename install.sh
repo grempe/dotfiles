@@ -6,6 +6,6 @@
 if [ "$CODESPACES" = "true" ]; then
     # Install and init dotfiles with chezmoi
     # see : https://www.chezmoi.io/quick-start/#using-chezmoi-across-multiple-machines
-    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-    sudo chezmoi init --apply --verbose https://github.com/grempe/dotfiles.git
+    sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+    chezmoi init --apply --verbose https://github.com/grempe/dotfiles.git
 fi

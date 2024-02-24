@@ -1,0 +1,34 @@
+[user]
+	name = Glenn Rempe
+	email = glenn@rempe.us
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAIfNYyVPO+8u9fNJFdI5J7oH3GNzxH7hrD+mRbOm8/I
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = /Users/glenn/.ssh/allowed_signers
+[commit]
+	gpgsign = true
+[tag]
+	forceSignAnnotated = true
+	gpgsign = true
+[alias]
+  co = checkout
+  st = status
+  br = branch
+
+# Any signatures on repos under this directory will be signed and labeled with glenn@truestamp.com instead of personal.
+# See : https://developer.1password.com/docs/ssh/git-commit-signing/#advanced-configuration
+[includeIf "gitdir:~/src/github.com/truestamp/"]
+  path = ~/src/github.com/truestamp/.gitconfig
+[push]
+	followTags = true
+[init]
+	defaultBranch = main
+
+[filter "lfs"]
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+

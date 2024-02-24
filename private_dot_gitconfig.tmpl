@@ -1,7 +1,16 @@
+[alias]
+  co = checkout
+  st = status
+  br = branch
+
 [user]
 	name = Glenn Rempe
 	email = glenn@rempe.us
+	{{ if eq .chezmoi.os "darwin" -}}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAIfNYyVPO+8u9fNJFdI5J7oH3GNzxH7hrD+mRbOm8/I
+	{{ end -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -12,10 +21,6 @@
 [tag]
 	forceSignAnnotated = true
 	gpgsign = true
-[alias]
-  co = checkout
-  st = status
-  br = branch
 
 # Any signatures on repos under this directory will be signed and labeled with glenn@truestamp.com instead of personal.
 # See : https://developer.1password.com/docs/ssh/git-commit-signing/#advanced-configuration
@@ -31,4 +36,4 @@
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
-
+{{ end -}}

@@ -8,7 +8,7 @@
 	email = glenn@rempe.us
 	{{ if eq .chezmoi.os "darwin" -}}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAIfNYyVPO+8u9fNJFdI5J7oH3GNzxH7hrD+mRbOm8/I
-	{{ end }}
+	{{- end }}
 
 {{ if eq .chezmoi.os "darwin" -}}
 [gpg]
@@ -36,4 +36,4 @@
         clean = git-lfs clean -- %f
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
-{{ end -}}
+{{- end }}
